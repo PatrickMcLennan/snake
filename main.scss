@@ -23,12 +23,8 @@ body {
     display: grid;
     grid-template: repeat(20, 1fr) / repeat(20, 1fr);
 }
-.head {
+.body {
     background: black;
-}
-.tail {
-    background: black;
-    margin: 2.5px;
 }
 .food {
     background: red;

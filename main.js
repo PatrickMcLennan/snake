@@ -3,8 +3,7 @@ const canvas = document.querySelector('.canvas');
 
 class Snake {
     constructor() {
-        this.head = document.querySelector('.head');
-        this.body = [this.head];
+        this.body = [document.querySelector('.body')];
         this.direction = this.getDirection();
         [this.x, this.y] = [10, 10];
         this.speed = 150;
@@ -20,12 +19,14 @@ class Snake {
             } else if (this.direction === 37){
                 this.y--;
             } 
-            this.head.style.gridArea = `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
-            if (this.head.style.gridArea === food.style.gridArea) {
+            this.body[0].style.gridArea = `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
+            
+            if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
                 newFood();
             }
             this.move();
+            this.tail();
         }, this.speed);
     }
     getDirection() {
@@ -36,11 +37,13 @@ class Snake {
     }
     grow() {
         const tail = document.createElement('div');
-        tail.classList.add('tail');
+        tail.classList.add('body');
         canvas.appendChild(tail);
         this.body.push(tail);
         console.log(this.body);
-        newFood();
+    }
+    tail() {
+
     }
 }
 
@@ -52,6 +55,7 @@ function start() {
     const snake = new Snake;
     snake.move()
     newFood();
+    
 }
 
 start();
