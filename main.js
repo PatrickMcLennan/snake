@@ -1,12 +1,13 @@
 const food = document.querySelector('.food');
+const head = document.querySelector('.head');
 
 class Snake {
     constructor() {
         this.head = document.querySelector('.head');
         this.body = [this.head];
         this.direction = this.getDirection();
-        this.x = 10;
-        this.y = 10;
+        [this.x, this.y] = [10, 10];
+        this.speed = 250;
     }
     move() {
         setTimeout( () => {
@@ -18,30 +19,34 @@ class Snake {
                 this.x++;
             } else if (this.direction === 37){
                 this.y--;
-            }
+            } 
             this.head.style.gridArea = `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
+            if (this.head.style.gridArea === food.style.gridArea) {
+                this.grow();
+                newFood();
+            }
             this.move();
-        }, 750)
+        }, this.speed);
     }
     getDirection() {
-        setTimeout( () => {
+        setTimeout(() => {
             window.addEventListener('keydown', e => this.direction = e.keyCode);
             this.getDirection();
-        }, 750)
+        }, this.speed);
     }
     grow() {
-        console.log('yum');
-        setFood();
+        console.log('ate');
     }
 }
-function setFood() {
+
+function newFood() {
     const [x, y] = [(Math.floor(Math.random() * 20)), (Math.floor(Math.random() * 20))];
     food.style.gridArea = `${x} / ${y} / ${x + 1} / ${y + 1}`;
 }
-
-const snake = new Snake;
-snake.move()
-setFood();
-if (snake.head.style.gridArea === food.style.gridArea) {
-    snake.grow();
+function start() {
+    const snake = new Snake;
+    snake.move()
+    newFood();
 }
+
+start();

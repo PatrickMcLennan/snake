@@ -26,5 +26,9 @@ body {
 .head {
   background: black; }
 
+.tail {
+  background: black;
+  margin: 7.5px; }
+
 .food {
   background: red; }
