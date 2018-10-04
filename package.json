@@ -1,0 +1,24 @@
+{
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PatrickMcLennan/snake.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PatrickMcLennan/snake/issues"
+  },
+  "homepage": "https://github.com/PatrickMcLennan/snake#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.1.5",
+    "node-sass": "^4.9.3",
+    "postcss-cli": "^6.0.0"
+  }
+}
