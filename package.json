@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch:sass": "node-sass main.scss style.css -w",
+    "prefix:css": "postcss --use autoprefixer -b 'last 10 versions' style.css -o style.css"
   },
   "repository": {
     "type": "git",
