@@ -1,5 +1,5 @@
 const food = document.querySelector('.food');
-const head = document.querySelector('.head');
+const canvas = document.querySelector('.canvas');
 
 class Snake {
     constructor() {
@@ -7,7 +7,7 @@ class Snake {
         this.body = [this.head];
         this.direction = this.getDirection();
         [this.x, this.y] = [10, 10];
-        this.speed = 250;
+        this.speed = 150;
     }
     move() {
         setTimeout( () => {
@@ -35,7 +35,12 @@ class Snake {
         }, this.speed);
     }
     grow() {
-        console.log('ate');
+        const tail = document.createElement('div');
+        tail.classList.add('tail');
+        canvas.appendChild(tail);
+        this.body.push(tail);
+        console.log(this.body);
+        newFood();
     }
 }
 
