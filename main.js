@@ -1,8 +1,8 @@
 class Snake {
     constructor() {
-        this.body = [];
-        this.body[0] = document.querySelector('.head');
-        this.direction = window.addEventListener('keydown', e => direction == e.keyCode);
+        this.head = document.querySelector('.head');
+        this.body = [this.head];
+        // this.direction = this.getDirection();
     }
     move() {
         console.log(this.body);
@@ -10,8 +10,11 @@ class Snake {
     }
     getDirection() {
         setTimeout( () => {
-            console.log(this.direction);
+            let direction;
+            window.addEventListener('keydown', e => e.keyCode === direction);
             this.getDirection();
+            console.log(direction);
+            return direction;
         }, 1000)
     }
 }
@@ -19,4 +22,4 @@ class Snake {
 
 const snake = new Snake;
 snake.move();
-snake.getDirection();
+console.log(snake.direction);
