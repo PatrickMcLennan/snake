@@ -20,23 +20,24 @@ class Snake {
         } 
         return `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
     }
+    add() {
+        const limb = document.createElement('div');
+        canvas.appendChild(limb);
+        this.body.push(limb);
+    }
     move() {
         setTimeout(() => {
-            const limb = document.createElement('div');
-            canvas.appendChild(limb);
-            this.body.push(limb);
+            this.add();
             this.body[0].style.gridArea = this.getArea();
             if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
             }
-            this.body.shift();
+            this.body = this.body.shift();
             this.move();
         }, this.speed)
     }
     grow() {
-        const limb = document.createElement('div');
-        canvas.appendChild(limb);
-        this.body.push(limb);
+        this.add();
         newFood();
     }
 
