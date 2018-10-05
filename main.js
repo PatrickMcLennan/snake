@@ -1,44 +1,44 @@
 const food = document.querySelector('.food');
 const canvas = document.querySelector('.canvas');
+const limb = document.createElement('div');
 
 class Snake {
     constructor() {
-        this.body = [1];
+        this.body = [];
         this.body[0] = document.createElement('div');
         this.direction = window.addEventListener('keydown', e => this.direction = e.keyCode);
         [this.x, this.y] = [10, 10];
         this.speed = 150;
     }
+    getDirection() {
+        if (this.direction === 38) {
+            this.x--;
+        } else if (this.direction === 39) {
+            this.y++;
+        } else if (this.direction === 40) {
+            this.x++;
+        } else if (this.direction === 37){
+            this.y--;
+        } 
+    }
     move() {
         setTimeout(() => {
-            const limb = document.createElement('div');
+            this.getDirection();
+            this.body[0].style.gridArea = `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
             canvas.appendChild(limb);
             this.body.shift();
-            if (this.direction === 38) {
-                this.x--;
-            } else if (this.direction === 39) {
-                this.y++;
-            } else if (this.direction === 40) {
-                this.x++;
-            } else if (this.direction === 37){
-                this.y--;
-            } 
-            this.body[0].style.gridArea = `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
             this.body.push(limb);
+            if (this.body[0].style.gridArea === food.style.gridArea) {
+                this.grow();
+            }
             this.move();
         }, this.speed)
-    }
-    eat(foodArea) {
-        if (this.body[0].style.gridArea === foodArea) {
-            this.grow();
-            return true;
-        }
-        return false;
     }
     grow() {
         const limb = document.createElement('div');
         canvas.appendChild(limb);
         this.body.push(limb);
+        newFood();
     }
 
 }
@@ -50,9 +50,6 @@ function newFood() {
 function play() {
     const snake = new Snake;
     newFood();
-    if (snake.eat(food.style.gridArea)) {
-        newFood();
-    }
     snake.move();
 }
 
