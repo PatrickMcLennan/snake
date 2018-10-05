@@ -8,6 +8,16 @@ class Snake {
         [this.x, this.y] = [10, 10];
         this.speed = 100;
     }
+    manage() {
+        setTimeout(() => {
+            this.newHead();
+            if (this.body[0].style.gridArea === food.style.gridArea) {
+                this.grow();
+            }
+            this.eatTail();
+            this.manage();
+        }, this.speed)
+    }
     getArea() {
         if (this.direction === 38) {
             this.x--;
@@ -20,7 +30,7 @@ class Snake {
         } 
         return `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
     }
-    addHead() {
+    newHead() {
         const head = document.createElement('div');
         canvas.appendChild(head);
         this.body.unshift(head);
@@ -30,20 +40,9 @@ class Snake {
         const tail = this.body[this.body.length - 1];
         this.body.pop(tail);
         canvas.removeChild(tail);
-        // console.log(tail);
-    }
-    manage() {
-        setTimeout(() => {
-            this.addHead();
-            if (this.body[0].style.gridArea === food.style.gridArea) {
-                this.grow();
-            }
-            this.eatTail();
-            this.manage();
-        }, this.speed)
     }
     grow() {
-        this.addHead();
+        this.newHead();
         newFood();
     }
 }
@@ -56,5 +55,4 @@ function play() {
     newFood();
     snake.manage();
 }
-
 play();
