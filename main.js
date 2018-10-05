@@ -23,7 +23,8 @@ class Snake {
     add() {
         const limb = document.createElement('div');
         canvas.appendChild(limb);
-        return this.body.unshift(limb);
+        this.body.unshift(limb);
+        this.body[0].style.gridArea = this.getArea();
     }
     remove() {
         this.body.pop()
@@ -31,7 +32,6 @@ class Snake {
     management() {
         setTimeout(() => {
             this.add();
-            this.body[0].style.gridArea = this.getArea();
             if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
             }
