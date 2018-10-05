@@ -23,27 +23,27 @@ class Snake {
     add() {
         const limb = document.createElement('div');
         canvas.appendChild(limb);
-        // this.body.splice(1, 0, )
-        // FOLLOW UP ON SPLICE
+        return this.body.unshift(limb);
     }
-    move() {
+    remove() {
+        this.body.pop()
+    }
+    management() {
         setTimeout(() => {
             this.add();
             this.body[0].style.gridArea = this.getArea();
             if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
             }
-            this.body.shift();
-            this.move();
+            this.remove();
+            this.management();
         }, this.speed)
     }
     grow() {
         this.add();
         newFood();
     }
-
 }
-
 function newFood() {
     const [x, y] = [(Math.floor(Math.random() * 20)), (Math.floor(Math.random() * 20))];
     food.style.gridArea = `${x} / ${y} / ${x + 1} / ${y + 1}`;
@@ -51,7 +51,7 @@ function newFood() {
 function play() {
     const snake = new Snake;
     newFood();
-    snake.move();
+    snake.management();
 }
 
 play();
