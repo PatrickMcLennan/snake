@@ -29,9 +29,6 @@ class Snake {
     management() {
         setTimeout(() => {
             this.add();
-            if (this.body[0].style.gridArea === food.style.gridArea) {
-                this.grow();
-            }
             this.body.pop();
             // console.log(this.body.length);
             this.management();
