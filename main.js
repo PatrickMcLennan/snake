@@ -23,7 +23,8 @@ class Snake {
     add() {
         const limb = document.createElement('div');
         canvas.appendChild(limb);
-        this.body.push(limb);
+        // this.body.splice(1, 0, )
+        // FOLLOW UP ON SPLICE
     }
     move() {
         setTimeout(() => {
@@ -32,7 +33,7 @@ class Snake {
             if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
             }
-            this.body = this.body.shift();
+            this.body.shift();
             this.move();
         }, this.speed)
     }
