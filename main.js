@@ -1,11 +1,9 @@
 const food = document.querySelector('.food');
 const canvas = document.querySelector('.canvas');
-const limb = document.createElement('div');
 
 class Snake {
     constructor() {
         this.body = [];
-        this.body[0] = document.createElement('div');
         this.direction = window.addEventListener('keydown', e => this.direction = e.keyCode);
         [this.x, this.y] = [10, 10];
         this.speed = 100;
@@ -24,13 +22,14 @@ class Snake {
     }
     move() {
         setTimeout(() => {
-            this.body[0].style.gridArea = this.getArea();
+            const limb = document.createElement('div');
             canvas.appendChild(limb);
-            this.body.shift();
             this.body.push(limb);
+            this.body[0].style.gridArea = this.getArea();
             if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
             }
+            this.body.shift();
             this.move();
         }, this.speed)
     }
