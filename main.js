@@ -8,9 +8,9 @@ class Snake {
         this.body[0] = document.createElement('div');
         this.direction = window.addEventListener('keydown', e => this.direction = e.keyCode);
         [this.x, this.y] = [10, 10];
-        this.speed = 150;
+        this.speed = 100;
     }
-    getDirection() {
+    getArea() {
         if (this.direction === 38) {
             this.x--;
         } else if (this.direction === 39) {
@@ -20,11 +20,11 @@ class Snake {
         } else if (this.direction === 37){
             this.y--;
         } 
+        return `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
     }
     move() {
         setTimeout(() => {
-            this.getDirection();
-            this.body[0].style.gridArea = `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
+            this.body[0].style.gridArea = this.getArea();
             canvas.appendChild(limb);
             this.body.shift();
             this.body.push(limb);
