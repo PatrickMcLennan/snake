@@ -24,16 +24,16 @@ class Snake {
         const limb = document.createElement('div');
         canvas.appendChild(limb);
         this.body.unshift(limb);
+        limb.style.gridArea = this.getArea();
     }
-    management() {
+    manage() {
         setTimeout(() => {
             this.add();
-            this.body[0].style.gridArea = this.getArea();
             if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
             }
             this.body.pop();
-            this.management();
+            this.manage();
         }, this.speed)
     }
     grow() {
@@ -48,7 +48,7 @@ function newFood() {
 function play() {
     const snake = new Snake;
     newFood();
-    snake.management();
+    snake.manage();
 }
 
 play();
