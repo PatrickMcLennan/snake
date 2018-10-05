@@ -25,20 +25,22 @@ class Snake {
             } 
             this.body[0].style.gridArea = `${this.x} / ${this.y} / ${this.x + 1} / ${this.y + 1}`;
             this.body.push(limb);
-
-            if (this.body[0].style.gridArea === food.style.gridArea) {
-                this.grow();
-                newFood();
-            }
-
             this.move();
         }, this.speed)
+    }
+    eat(foodArea) {
+        if (this.body[0].style.gridArea === foodArea) {
+            this.grow();
+            return true;
+        }
+        return false;
     }
     grow() {
         const limb = document.createElement('div');
         canvas.appendChild(limb);
         this.body.push(limb);
     }
+
 }
 
 function newFood() {
@@ -48,6 +50,9 @@ function newFood() {
 function play() {
     const snake = new Snake;
     newFood();
+    if (snake.eat(food.style.gridArea)) {
+        newFood();
+    }
     snake.move();
 }
 
