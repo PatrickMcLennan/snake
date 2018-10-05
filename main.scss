@@ -22,10 +22,11 @@ body {
     border: 1px solid black;
     display: grid;
     grid-template: repeat(20, 1fr) / repeat(20, 1fr);
-}
-.body {
-    background: black;
-}
-.food {
-    background: red;
+    
+    & div {
+        background: black;
+    }
+    & .food {
+        background: red;
+    }
 }
