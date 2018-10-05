@@ -26,16 +26,14 @@ class Snake {
         this.body.unshift(limb);
         this.body[0].style.gridArea = this.getArea();
     }
-    remove() {
-        this.body.pop()
-    }
     management() {
         setTimeout(() => {
             this.add();
             if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
             }
-            this.remove();
+            this.body.pop();
+            // console.log(this.body.length);
             this.management();
         }, this.speed)
     }
