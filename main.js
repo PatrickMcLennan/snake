@@ -14,7 +14,7 @@ class Snake {
             if (this.body[0].style.gridArea === food.style.gridArea) {
                 this.grow();
             }
-            this.eatTail();
+            // this.eatTail();
             this.manage();
         }, this.speed)
     }
@@ -38,8 +38,8 @@ class Snake {
     }
     eatTail() {
         const tail = this.body[this.body.length - 1];
-        this.body.pop(tail);
         canvas.removeChild(tail);
+        this.body.pop(tail);
     }
     grow() {
         this.newHead();
