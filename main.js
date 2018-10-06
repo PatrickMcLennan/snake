@@ -1,8 +1,17 @@
 'use strict';
 
+// DOM
 const food = document.querySelector('.food');
 const canvas = document.querySelector('.canvas');
+const newFood, play;
 
+newFood = function () {
+  const [x, y] = [(Math.floor(Math.random() * 20)), (Math.floor(Math.random() * 20))];
+  food.style.gridArea = `${x} / ${y} / ${x + 1} / ${y + 1}`;
+}
+
+
+// SNAKE
 class Snake {
   constructor() {
     this.body = [];
@@ -17,7 +26,7 @@ class Snake {
       if (this.body[0].style.gridArea === food.style.gridArea) {
         this.grow();
       }
-      // this.eatTail();
+      this.eatTail();
       this.manage();
     }, this.speed);
   }
@@ -38,7 +47,7 @@ class Snake {
   newHead() {
     const head = document.createElement('div');
     canvas.appendChild(head);
-    this.body.unshift(head);
+    this.body.push(head);
     head.style.gridArea = this.getArea();
   }
 
@@ -53,11 +62,7 @@ class Snake {
     newFood();
   }
 }
-function newFood() {
-  const [x, y] = [(Math.floor(Math.random() * 20)), (Math.floor(Math.random() * 20))];
-  food.style.gridArea = `${x} / ${y} / ${x + 1} / ${y + 1}`;
-}
-function play() {
+play = function () {
   const snake = new Snake();
   newFood();
   snake.manage();
